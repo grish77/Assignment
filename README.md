@@ -19,13 +19,13 @@ The task is to create a simulation environment for a Robot in the Gazebo platfor
 
 3.	After that, let’s take a look at the ros topics using the command “rostopic list’ as shown below.
 ![turtlesim(2)keyboard_teleop](https://user-images.githubusercontent.com/83338844/182208441-34d359a4-470c-4573-b49d-d2ef74539a3b.png)
-As we can see, the publisher ‘/turtle1/cmd_vel’ is used in the code to control the turtlebot.
+As we can see, the command is published to topic ‘/turtle1/cmd_vel’ to control the turtlebot.
 
 4.	Now, Let’s modify the code accordingly and execute the code using the command ‘rosrun turtle_one turtle_keyboard.py’. The control instructions are shown in the picture below.
 ![turtlesim(3)_teleop_keyboard](https://user-images.githubusercontent.com/83338844/182208760-290263d7-00a4-4f1b-90da-5c5a885c3303.png)
 
 ### (Now using TurtleBot3)
-5.	Now, in the same way, Let’s use the same code for keyboard control on the TurtleBot3 as depicted in the figure. Here, the publisher ‘/cmd_vel’ is used in the code.
+5.	Now, in the same way, Let’s use the same code for keyboard control on the TurtleBot3 as depicted in the figure. Here, the command is published to topic ‘/cmd_vel’   to control the TurtleBot3.
 ![turtlebot3(1)keyboardcontrol](https://user-images.githubusercontent.com/83338844/182208986-f79b8cfe-95ae-432b-a811-6399d604adf1.png)
 
 ![turtlebot3(2)keyboardcontrol](https://user-images.githubusercontent.com/83338844/182209020-fab46cdd-c2e5-49c1-b991-3c65ec7a5ad3.png)
