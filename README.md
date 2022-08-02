@@ -29,3 +29,29 @@ As we can see, the command is published to topic ‘/turtle1/cmd_vel’ to contr
 ![turtlebot3(1)keyboardcontrol](https://user-images.githubusercontent.com/83338844/182208986-f79b8cfe-95ae-432b-a811-6399d604adf1.png)
 
 ![turtlebot3(2)keyboardcontrol](https://user-images.githubusercontent.com/83338844/182209020-fab46cdd-c2e5-49c1-b991-3c65ec7a5ad3.png)
+
+## Offline Loading and Visualization of the map on RViz environment
+
+1.	Let’s start with installation of the Simultaneous Localization and Mapping (SLAM) module. This module takes care of building robot and updating map in an unknown environment as well as keeps track of the location at the same time. Use installation command ‘sudo apt install ros-noetic-slam-gmapping). The gmapping package helps in creating a 2-D occupancy grid map.
+![SLAM module installation](https://user-images.githubusercontent.com/83338844/182410436-b51f090a-e462-41a5-b247-5a44a9144508.png)
+
+2.	Now, in another terminal. Launch the gazebo world for our simulation using the command ‘roslaunch turtlebot3_gazebo turtlebot3_world.launch’
+![Gazebo launch](https://user-images.githubusercontent.com/83338844/182410827-97998022-8c63-4cd2-938a-fa22caf54f40.png)
+
+3.	After that, launch SLAM in a new terminal as shown below.
+![SLAM launch](https://user-images.githubusercontent.com/83338844/182411006-6fe287f6-377f-442b-a9db-7c4b20960454.png)
+
+4.	Again, in a new terminal, start Autonomous Navigation.
+![Auto nav launch](https://user-images.githubusercontent.com/83338844/182411214-a2c08316-9e49-49de-b22e-00de70f43c0f.png)
+As we can see, the map of the gazebo environment is being created in the rviz environment as the turtlebot moves around autonomously.
+![Auto nav map creation](https://user-images.githubusercontent.com/83338844/182411437-ed71f7cc-f426-485c-8198-fca3161b7208.png)
+
+5.	Once the desired map is created, the map can be saved. Let’s get inside the catkin workspace and then in src folder, where we are going to create a folder called maps to store the map. Then, go inside the maps directory and run the command ‘rosrun map_server map_saver –f  rviz_map’ . This command creates two files in the maps directory called rviz_map.pgm and rviz_map.yaml and they contain information about the map.
+![creating folder for map](https://user-images.githubusercontent.com/83338844/182411672-7261e0a3-c8ac-4156-aaac-5bbd9159f65b.png)
+Now, we can close all the terminals that are running.
+
+6.	Now, to open the saved map, go to the catkin_ws/src/maps/ and execute the command ‘rosrun map_server map_server rviz_map.yaml’. and again launch rviz to view the map. Make sure you have the correct map topic as shown in the figure.
+![opening the map](https://user-images.githubusercontent.com/83338844/182412227-4a81837a-76d7-41dd-b79a-cb60c83e91bb.png)
+![offline map in rviz](https://user-images.githubusercontent.com/83338844/182412329-2d227d6b-c809-4244-90f3-afe5b5162bb2.png)
+
+
