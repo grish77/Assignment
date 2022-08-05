@@ -2,7 +2,7 @@
 The task is to create a simulation environment for a Robot in the Gazebo platform, where the robot Navigates around the environment to learn about its environment and will generate a map of its environment
 
 ## Installation of ROS and Gazebo on Ubuntu System.
- 1.	First of all, installed ROS noetic version in your Ubuntu machine in VirtualBox. Then, check the version of ROS to check if it has been installed properly using the command 'rosversion -d'. 
+ 1.	First of all, Let's install the ROS noetic version in your Ubuntu machine. Then, check the version of ROS to check if it has been installed properly using the command 'rosversion -d'. 
 ![ros install](https://user-images.githubusercontent.com/83338844/182037660-8d0d8811-5023-460c-91ec-0b9d8161d346.png)
  2.	After that, check if the standalone Gazebo is working properly and check the version of Gazebo using command 'gazebo --version'. Then, try to start gazebo using the roslaunch command 'roslaunch gazebo_ros empty_world.launch'. This is shown in the image below.
 ![gazebo test](https://user-images.githubusercontent.com/83338844/182037625-f28a22eb-eb5b-4445-a533-76b907d235cf.png)
@@ -17,28 +17,28 @@ The task is to create a simulation environment for a Robot in the Gazebo platfor
 2.	For this purpose, first run the roscore and then start the turtlesim using the command ‘rosrun turtlesim turtlesim_node’ as shown in the figure below.
 ![turtlesim(1)keyboard_teleop](https://user-images.githubusercontent.com/83338844/182208162-edb788f7-37c9-49f5-9d9e-2541adabad1a.png)
 
-3.	After that, let’s take a look at the ros topics using the command “rostopic list’ as shown below.
+3. After that, in a new terminal, let’s take a look at the ros topics using the command “rostopic list’ as shown below.
 ![turtlesim(2)keyboard_teleop](https://user-images.githubusercontent.com/83338844/182208441-34d359a4-470c-4573-b49d-d2ef74539a3b.png)
-As we can see, the command is published to topic ‘/turtle1/cmd_vel’ to control the turtlebot.
+As we can see, there is a topic called ‘/turtle1/cmd_vel’ that we are going to use to publish the velocity commands to control the turtlebot using keyboard.
 
-4.	Now, Let’s modify the code accordingly and execute the code using the command ‘rosrun turtle_one turtle_keyboard.py’. The control instructions are shown in the picture below.
+4.	To control the turtle bot, the teleop_twist_keyboard package can be directly installed using the command ‘sudo apt-get install ros-noetic-teleop-twist-keyboard’ and use the command ‘rosrun teleop_twist_keyboard teleop_twist_keyboard.py’. However, in this case, the open source python code for keyboard control has been used with slight modification, creating our own package ‘turtle_one’. Now, Let’s modify the code accordingly and execute the node in a new terminal using the command ‘rosrun turtle_one turtle_keyboard.py’. The control instructions are shown in the picture below.
 ![turtlesim(3)_teleop_keyboard](https://user-images.githubusercontent.com/83338844/182208760-290263d7-00a4-4f1b-90da-5c5a885c3303.png)
 
 ### (Now using TurtleBot3)
-5.	Now, in the same way, Let’s use the same code for keyboard control on the TurtleBot3 as depicted in the figure. Here, the command is published to topic ‘/cmd_vel’   to control the TurtleBot3.
+5.	Now, in the same way, Let’s use the same code for keyboard control on the TurtleBot3 as depicted in the figure. Here, the topic ‘/cmd_vel’ is used to publish the motion commands in the code.
 ![turtlebot3(1)keyboardcontrol](https://user-images.githubusercontent.com/83338844/182208986-f79b8cfe-95ae-432b-a811-6399d604adf1.png)
 
 ![turtlebot3(2)keyboardcontrol](https://user-images.githubusercontent.com/83338844/182209020-fab46cdd-c2e5-49c1-b991-3c65ec7a5ad3.png)
 
 ## Offline Loading and Visualization of the map on RViz environment
 
-1.	Let’s start with installation of the Simultaneous Localization and Mapping (SLAM) module. This module takes care of building robot and updating map in an unknown environment as well as keeps track of the location at the same time. Use installation command ‘sudo apt install ros-noetic-slam-gmapping). The gmapping package helps in creating a 2-D occupancy grid map.
+1.	Let’s start with installation of the Simultaneous Localization and Mapping (SLAM) module. This module takes care of building robot and updating map in an unknown environment as well as keeps track of the location at the same time. Use installation command ‘sudo apt install ros-noetic-slam-gmapping). The gmapping package helps in creating a 2-D occupancy grid map. Here, all the packages needed for this purpose have been git cloned using the link ‘https://github.com/ROBOTIS-GIT/turtlebot3.git’.
 ![SLAM module installation](https://user-images.githubusercontent.com/83338844/182410436-b51f090a-e462-41a5-b247-5a44a9144508.png)
 
 2.	Now, in another terminal. Launch the gazebo world for our simulation using the command ‘roslaunch turtlebot3_gazebo turtlebot3_world.launch’
 ![Gazebo launch](https://user-images.githubusercontent.com/83338844/182410827-97998022-8c63-4cd2-938a-fa22caf54f40.png)
 
-3.	After that, launch SLAM in a new terminal as shown below.
+3.	After that, for mapping purpose, launch another node in a new terminal using command as shown below.
 ![SLAM launch](https://user-images.githubusercontent.com/83338844/182411006-6fe287f6-377f-442b-a9db-7c4b20960454.png)
 
 4.	Again, in a new terminal, start Autonomous Navigation.
