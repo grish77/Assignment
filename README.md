@@ -61,28 +61,35 @@ Let’s start by making a package named my_robot using the command ‘catkin_cre
 Different files needed for the creation of custom robot are described below.
 1.	URDF file
 The term URDF stands for Universal Robotic Description Format and follows XML format for description of different components of any model. Different parts of any URDF file are:
+
 a.	Links: 
+
 A link is a part of a robot and has multiple aspects like inertial, collision, and visual aspect. The inertial aspect contains the properties of any link such as link’s mass, position of its center of mass, and its central inertia. The collision aspect of any link specifies the geometrical properties of the link. The visual aspect of a link has the visual properties of link and makes the link visible.
 ![link_urdf](https://user-images.githubusercontent.com/83338844/183009696-83533c9a-06e8-4c0e-98b7-4d3851c04756.png)
 
 b.	Joints:
+
 Two links or parts of any model or robot are connected using joints. The joint element describes the kinematics and dynamics of the joint. The attribute name specifies the name of the joint and type specifies the type of joint.
 ![joints](https://user-images.githubusercontent.com/83338844/183009714-6cc1fbdb-94f9-4c78-b10b-f4d9de6d205a.png)
 
 
 2.	Gazebo Plugin (filename.gazebo)
+
 The gazebo plugin defines how does the controller actually get plugged in and how the control commands are published. It is wrapped in with <gazebo> pill to indicate the information passed to gazebo. Gazebo plugins give URDF models greater functionality and can tie in ROS messages and services for sensor output and motor input.
 ![gazebo plugin](https://user-images.githubusercontent.com/83338844/183009726-b45b757e-2a92-4f19-aa55-75481cb7e1c0.png)
  
  3.	Launch files: 
+ 
 Launch files are needed to launch the custom model or spawn the model. There are two launch files in for our model, world.launch and robot_description.launch. 
 ![world_launch](https://user-images.githubusercontent.com/83338844/183009750-b5d5b68e-a2bc-4e5c-98d4-bb8cb9b7d7fd.png)
 
  ![robot_des_launch](https://user-images.githubusercontent.com/83338844/183009771-795e7cdd-d986-44d0-85cd-24e740a41110.png)
  
  4.	World file
+ 
 A world file is a file that contains the information or description of all the elements like robots, lights, sensor, etc. to be simulated in gazebo.
 ![empty_world](https://user-images.githubusercontent.com/83338844/183009819-b5906686-f87a-464d-a20d-156b79b4f19b.png)
+
 
 After creation of all the files, it is time to launch our custom robot in the gazebo world. It can be done in the following steps:
  
