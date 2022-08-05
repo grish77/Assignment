@@ -54,4 +54,44 @@ Now, we can close all the terminals that are running.
 ![opening the map](https://user-images.githubusercontent.com/83338844/182412227-4a81837a-76d7-41dd-b79a-cb60c83e91bb.png)
 ![offline map in rviz](https://user-images.githubusercontent.com/83338844/182412329-2d227d6b-c809-4244-90f3-afe5b5162bb2.png)
 
+## Simulating a Customized Robot by creating custom URDF file on Gazebo
+
+Let’s start by making a package named my_robot using the command ‘catkin_create_pkg my_robot rospy roscpp std_msgs’ and then add or make necessary folders inside the package using the command ‘mkdir’. Start with creating a folder called urdf, where we are going to add our urdf file. We can make any file inside a directory using the command ‘touch filename.extension’ and make it executable using ‘chmod +x filename.extention’ command. To edit any file, we can use the command ‘gedit filename.extention’. We also need other folders like launch and world, where we create our launch file and world file for successfully simulating our customized robot in gazebo world. All the files have been added to the git repository.
+
+Different files needed for the creation of custom robot are described below.
+1.	URDF file
+The term URDF stands for Universal Robotic Description Format and follows XML format for description of different components of any model. Different parts of any URDF file are:
+a.	Links: 
+A link is a part of a robot and has multiple aspects like inertial, collision, and visual aspect. The inertial aspect contains the properties of any link such as link’s mass, position of its center of mass, and its central inertia. The collision aspect of any link specifies the geometrical properties of the link. The visual aspect of a link has the visual properties of link and makes the link visible.
+![link_urdf](https://user-images.githubusercontent.com/83338844/183009696-83533c9a-06e8-4c0e-98b7-4d3851c04756.png)
+
+b.	Joints:
+Two links or parts of any model or robot are connected using joints. The joint element describes the kinematics and dynamics of the joint. The attribute name specifies the name of the joint and type specifies the type of joint.
+![joints](https://user-images.githubusercontent.com/83338844/183009714-6cc1fbdb-94f9-4c78-b10b-f4d9de6d205a.png)
+
+
+2.	Gazebo Plugin (filename.gazebo)
+The gazebo plugin defines how does the controller actually get plugged in and how the control commands are published. It is wrapped in with <gazebo> pill to indicate the information passed to gazebo. Gazebo plugins give URDF models greater functionality and can tie in ROS messages and services for sensor output and motor input.
+![gazebo plugin](https://user-images.githubusercontent.com/83338844/183009726-b45b757e-2a92-4f19-aa55-75481cb7e1c0.png)
+ 
+ 3.	Launch files: 
+Launch files are needed to launch the custom model or spawn the model. There are two launch files in for our model, world.launch and robot_description.launch. 
+![world_launch](https://user-images.githubusercontent.com/83338844/183009750-b5d5b68e-a2bc-4e5c-98d4-bb8cb9b7d7fd.png)
+
+ ![robot_des_launch](https://user-images.githubusercontent.com/83338844/183009771-795e7cdd-d986-44d0-85cd-24e740a41110.png)
+ 
+ 4.	World file
+A world file is a file that contains the information or description of all the elements like robots, lights, sensor, etc. to be simulated in gazebo.
+![empty_world](https://user-images.githubusercontent.com/83338844/183009819-b5906686-f87a-464d-a20d-156b79b4f19b.png)
+
+After creation of all the files, it is time to launch our custom robot in the gazebo world. It can be done in the following steps:
+ 
+ 1.	Go to catkin_ws and run ‘catkin_make’ command to build the packages in catkin_ws and source the setup.sh file for adding environment variable.
+ ![first_custom](https://user-images.githubusercontent.com/83338844/183009793-acac7df9-788a-411f-b7a9-bab9b66a5958.png)
+
+ 2.	Launch the robot in gazebo world using command ‘roslaunch my_robot world.launch’.
+ ![second_custom](https://user-images.githubusercontent.com/83338844/183009846-369dd629-9d90-4f70-96a1-eeb89ec17af4.png)
+
+ 3.	We can see our robot in the empty gazebo world now. Using our code for keyboard control that we created earlier, we can control our robot.
+ ![3rd_custom](https://user-images.githubusercontent.com/83338844/183009856-0c2500a3-97d3-475e-b185-46042742bf87.png)
 
