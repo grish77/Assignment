@@ -1,4 +1,4 @@
-# Assignment
+# Task
 The task is to create a simulation environment for a Robot in the Gazebo platform, where the robot Navigates around the environment to learn about its environment and will generate a map of its environment
 
 ## Installation of ROS and Gazebo on Ubuntu System.
